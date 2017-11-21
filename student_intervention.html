@@ -11811,7 +11811,20 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Classification. There classes of students who are passed, and failed.</p>
+<p>Classification. 
+As quoted by <a href="https://medium.com/simple-ai/classification-versus-regression-intro-to-machine-learning-5-5566efd4cb83">David Fumo</a>:</p>
+<blockquote><p>The labels(y) generally comes in categorical form and represents a finite number of classes. Consider the tasks bellow:</p>
+
+<pre><code>* Given set of input features predict whether a Breast Cancer is Benign or Malignant.
+* Given an image correctly classify as containing Cats or Dogs.
+* From a given email predict whether it’s spam email or not.</code></pre>
+</blockquote>
+<p>There classes of students who are passed, and failed.
+As shown in the "passed" column, or Y of our data there are classes:</p>
+<ol>
+<li>no (negative)</li>
+<li>yes (positive)</li>
+</ol>
 
 </div>
 </div>
@@ -11828,7 +11841,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11862,7 +11875,7 @@ div#notebook {
 </div>
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[2]:</div>
+<div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -12059,7 +12072,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;passed&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -12077,7 +12090,8 @@ div#notebook {
 <span class="n">n_failed</span> <span class="o">=</span> <span class="n">passed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">passed</span> <span class="o">==</span> <span class="s1">&#39;no&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate graduation rate</span>
-<span class="n">grad_rate</span> <span class="o">=</span> <span class="n">n_students</span> <span class="o">/</span> <span class="n">n_passed</span>
+<span class="n">grad_rate</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_passed</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_students</span>
+<span class="n">failed_rate</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_failed</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_students</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
@@ -12085,6 +12099,7 @@ div#notebook {
 <span class="k">print</span> <span class="s2">&quot;Number of students who passed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_passed</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Number of students who failed: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_failed</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Graduation rate of the class: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grad_rate</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;Fail rate of the class: {:.2f}%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">failed_rate</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12103,7 +12118,8 @@ div#notebook {
 Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
-Graduation rate of the class: 1.00%
+Graduation rate of the class: 67.00%
+Fail rate of the class: 32.00%
 </pre>
 </div>
 </div>
@@ -12126,7 +12142,7 @@ Graduation rate of the class: 1.00%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -12210,7 +12226,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12283,7 +12299,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12373,10 +12389,10 @@ The GNB was used a lot in text classification, such as email spam/not spam examp
 <p><strong>Strenghts</strong>
 It's very useful for categorical type data, it's also good because it might be not to sensitive to outliers, since it works with strong (naive) independence assumptions between the features.</p>
 <p><strong>Weaknessess</strong>
-Because the algorithm is based on probability theory, he's very dependant on the data distribution, so in datasets with sparse data (more of a given class than other), the algorithm might not succeed well.
+Because the algorithm is based on probability theory, he's very dependant on the data distribution, so in datasets with class imbalance (more of a given class than other), the algorithm might not succeed well.
 And also the Gaussian NB does not have too many hiper-parameters, making a GridSearchCV kind of useless.</p>
 <p><strong> Good Candidate </strong>
-The data given has a lot of categorical type data, this makes a NB approach a good candidate for his type of dataset.</p>
+The classes of the data are not really imbalanced. The dataset is small, altought it doesnt seem to have many outliers. The Naive Bayes approach is simple to use, and understand, and it's also ver fast.</p>
 <p><strong> The second choice: </strong>
 Support Vector Machines Classifier</p>
 <p><strong>Real world applications:</strong>
@@ -12428,7 +12444,7 @@ And also the study in [3] shown good results, in a very similar context, with si
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12501,7 +12517,7 @@ And also the study in [3] shown good results, in a very similar context, with si
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[145]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
